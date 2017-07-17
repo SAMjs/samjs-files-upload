@@ -1,0 +1,49 @@
+{
+  "name": "samjs-files-upload",
+  "description": "",
+  "version": "0.0.0",
+  "repository": "https://github.com/SAMjs/samjs-files-upload",
+  "author": {
+    "name": "Paul Pflugradt",
+    "email": "paul.pflugradt@gmail.com"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "browser": "client/index.js",
+  "engines": {
+    "node": "*"
+  },
+  "files": [
+    "lib/",
+    "client/"
+  ],
+  "devDependencies": {
+    "autodev": "^0.1.1",
+    "ceri-dev-server": "^1.0.9",
+    "chai": "^4.1.0",
+    "coffee-cli": "^0.2.1",
+    "coffee-loader": "^0.7.3",
+    "coffee-script": "^1.12.6",
+    "coffeescript": "^2.0.0-beta3",
+    "mocha": "^3.4.2",
+    "rimraf": "^2.6.1",
+    "samjs": "^0.4.0",
+    "samjs-files": "^0.4.0",
+    "script-runner": "^0.1.7",
+    "try-require-multiple": "^0.1.0"
+  },
+  "keywords": [],
+  "readmeFilename": "README.md",
+  "scripts": {
+    "prebuild": "rimraf lib/ client/",
+    "build": "run-npm build:*",
+    "build:server": "coffee-cli --next --bare --no-header --compile --output lib/ src/*.coffee",
+    "build:client": "coffee-cli --no-header --compile --output client/ client-src/*.coffee",
+    "test": "mocha",
+    "watch": "mocha --watch",
+    "dev": "autodev devserver.coffee",
+    "preversion": "npm test",
+    "version": "npm run build && git add .",
+    "postversion": "git push && git push --tags && npm publish"
+  }
+}
